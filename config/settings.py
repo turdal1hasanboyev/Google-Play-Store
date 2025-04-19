@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     # build-in libs
 
     # Django Clean Up media papkani keraksiz fayllardan tozalash uchun
-    'django_cleanup.apps.CleanupConfig',
+    # 'django_cleanup.apps.CleanupConfig',
+    'django_cleanup',
     # Ckeditor
     'ckeditor',
     'ckeditor_uploader',
