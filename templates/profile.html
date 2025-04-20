@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ user_profile.email }} Profile {% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <h2>{{ user_profile.get_full_name|default:"Full Name not available" }}</h2>
+        <p><strong>Email:</strong> {{ user_profile.email }}</p>
+        <p><strong>Phone:</strong> {{ user_profile.phone_number }}</p>
+    </div>
+    <div class="col-md-8">
+        <h3>Apps Developed by {{ user_profile.get_full_name }}</h3>
+        <div class="row">
+            {% for app in user_apps %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ app.logo.url }}" class="card-img-top" alt="{{ app.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ app.title }}</h5>
+                        <a href="{% url 'app_detail' app.id %}" class="btn btn-primary">View App</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No apps developed by this user.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

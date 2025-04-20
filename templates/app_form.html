@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Create/Update App{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">{% if app %}Update {% else %}Create {% endif %}App</h2>
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">App Title</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{ app.title if app else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">App Description</label>
+        <textarea name="description" id="description" class="form-control" rows="3"
+            required>{{ app.description if app else '' }}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select name="category" id="category" class="form-control" required>
+            {% for category in categories %}
+            <option value="{{ category.id }}" {% if app and app.category.id==category.id %}selected{% endif %}>{{
+                category.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="logo" class="form-label">Logo</label>
+        <input type="file" name="logo" id="logo" class="form-control">
+        {% if app and app.logo %}
+        <img src="{{ app.logo.url }}" class="img-fluid mt-2" style="max-height: 150px;">
+        {% endif %}
+    </div>
+    <div class="mb-3">
+        <label for="apk_file" class="form-label">APK File</label>
+        <input type="file" name="apk_file" id="apk_file" class="form-control">
+    </div>
+    <div class="mb-3">
+        <label for="version" class="form-label">Version</label>
+        <input type="text" name="version" id="version" class="form-control" value="{{ app.version if app else '' }}"
+            required>
+    </div>
+    <div class="mb-3">
+        <label for="size" class="form-label">Size (MB)</label>
+        <input type="number" name="size" id="size" class="form-control" value="{{ app.size if app else '' }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="is_free" class="form-check-label">Free App</label>
+        <input type="checkbox" name="is_free" id="is_free" class="form-check-input" {% if app and app.is_free
+            %}checked{% endif %}>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price (USD)</label>
+        <input type="number" name="price" id="price" class="form-control" value="{{ app.price if app else '' }}" {% if
+            app and app.is_free %}disabled{% endif %}>
+    </div>
+    <button type="submit" class="btn btn-primary">{% if app %}Update{% else %}Create{% endif %} App</button>
+</form>
+{% endblock %}
