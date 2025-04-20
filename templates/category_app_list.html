@@ -5,6 +5,7 @@
 {% block title %}Apps in Category - App Store{% endblock %}
 
 {% block content %}
+
 <h2 class="mb-4">Apps in {{ apps.first.category.name }} Category</h2>
 <div class="row">
     {% for app in apps %}
@@ -22,4 +23,5 @@
     <p>No apps in this category.</p>
     {% endfor %}
 </div>
+
 {% endblock %}

@@ -5,6 +5,7 @@
 {% block title %} {{ user_profile.email }} Profile {% endblock %}
 
 {% block content %}
+
 <div class="row">
     <div class="col-md-4">
         <h2>{{ user_profile.get_full_name|default:"Full Name not available" }}</h2>
@@ -30,4 +31,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

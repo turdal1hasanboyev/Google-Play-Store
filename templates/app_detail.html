@@ -5,6 +5,7 @@
 {% block title %}{{ app.title }} - App Details{% endblock %}
 
 {% block content %}
+
 <div class="row">
     <div class="col-md-6">
         <img src="{{ app.logo.url }}" class="img-fluid mb-3" alt="{{ app.title }}">
@@ -13,8 +14,8 @@
         <p><strong>Version:</strong> {{ app.version }}</p>
         <p><strong>Size:</strong> {{ app.size }} MB</p>
         <p><strong>Price:</strong> {% if app.is_free %}Free{% else %}$ {{ app.price }}{% endif %}</p>
-        <p>{{ app.description }}</p>
-        <p><strong>Developer:</strong> <a href="{% url 'user_profile' app.developer.id %}">{{ app.developer }}</a></p>
+        <p>{{ app.description|safe }}</p>
+        <p><strong>Developer:</strong> <a href="{% url 'user_profile' app.developer.id %}">{{ app.developer.get_full_name }}</a></p>
         <a href="{{ app.apk_file.url }}" class="btn btn-success mt-2">Download APK</a>
     </div>
 
@@ -25,7 +26,7 @@
         {% for review in reviews %}
         <div class="border p-2 mb-2">
             <strong>{{ review.user }}</strong> rated it {{ review.rating }} ⭐
-            <p>{{ review.comment }}</p>
+            <p>{{ review.comment|safe }}</p>
         </div>
         {% empty %}
         <p>No reviews yet.</p>
@@ -35,7 +36,7 @@
         <form action="{% url 'review_create' app.id %}" method="post">
             {% csrf_token %}
             <div class="mb-2">
-                <label for="rating" class="form-label">Rating (1–5)</label>
+                <label for="rating" class="form-label">Rating (1-5)</label>
                 <input type="number" name="rating" class="form-control" min="1" max="5" required>
             </div>
             <div class="mb-2">
@@ -49,4 +50,5 @@
         {% endif %}
     </div>
 </div>
+
 {% endblock %}

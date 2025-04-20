@@ -5,6 +5,7 @@
 {% block title %}Create/Update App{% endblock %}
 
 {% block content %}
+
 <h2 class="mb-4">{% if app %}Update {% else %}Create {% endif %}App</h2>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -21,8 +22,7 @@
         <label for="category" class="form-label">Category</label>
         <select name="category" id="category" class="form-control" required>
             {% for category in categories %}
-            <option value="{{ category.id }}" {% if app and app.category.id==category.id %}selected{% endif %}>{{
-                category.name }}</option>
+            <option value="{{ category.id }}" {% if app and app.category.id==category.id %}selected{% endif %}>{{ category.name }}</option>
             {% endfor %}
         </select>
     </div>
@@ -39,8 +39,7 @@
     </div>
     <div class="mb-3">
         <label for="version" class="form-label">Version</label>
-        <input type="text" name="version" id="version" class="form-control" value="{{ app.version if app else '' }}"
-            required>
+        <input type="text" name="version" id="version" class="form-control" value="{{ app.version if app else '' }}" required>
     </div>
     <div class="mb-3">
         <label for="size" class="form-label">Size (MB)</label>
@@ -48,14 +47,13 @@
     </div>
     <div class="mb-3">
         <label for="is_free" class="form-check-label">Free App</label>
-        <input type="checkbox" name="is_free" id="is_free" class="form-check-input" {% if app and app.is_free
-            %}checked{% endif %}>
+        <input type="checkbox" name="is_free" id="is_free" class="form-check-input" {% if app and app.is_free %}checked{% endif %}>
     </div>
     <div class="mb-3">
         <label for="price" class="form-label">Price (USD)</label>
-        <input type="number" name="price" id="price" class="form-control" value="{{ app.price if app else '' }}" {% if
-            app and app.is_free %}disabled{% endif %}>
+        <input type="number" name="price" id="price" class="form-control" value="{{ app.price if app else '' }}" {% if app and app.is_free %}disabled{% endif %}>
     </div>
     <button type="submit" class="btn btn-primary">{% if app %}Update{% else %}Create{% endif %} App</button>
 </form>
+
 {% endblock %}

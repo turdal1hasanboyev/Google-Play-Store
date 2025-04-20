@@ -39,7 +39,7 @@ def register_view(request):
         user.save()
         messages.success(request, 'Account created successfully')
         login(request, user)
-        return redirect('user_profile')
+        return redirect('user_profile', pk=user.id)
 
     return render(request, 'register.html')
 
@@ -53,7 +53,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Logged in successfully')
-            return redirect('user_profile')
+            return redirect('user_profile', pk=user.id)
         else:
             messages.error(request, 'Invalid email or password')
             return redirect('login')

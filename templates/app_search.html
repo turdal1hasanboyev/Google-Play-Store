@@ -5,6 +5,7 @@
 {% block title %}Search Results - App Store{% endblock %}
 
 {% block content %}
+
 <h2 class="mb-4">Search Results for "{{ query }}"</h2>
 <div class="row">
     {% for app in apps %}
@@ -22,4 +23,5 @@
     <p>No apps found for your search.</p>
     {% endfor %}
 </div>
+
 {% endblock %}

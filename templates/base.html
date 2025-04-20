@@ -37,19 +37,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'app_create' %}">Create App</a>
                     </li>
-                    <!-- <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'user_profile' request.user.id %}">Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    </li> -->
-                    <!-- {% else %}
+                    </li>
+                    {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Register</a>
-                    </li> -->
+                    </li>
                     {% endif %}
                 </ul>
                 <form class="d-flex ms-3" method="get" action="{% url 'app_search' %}">
