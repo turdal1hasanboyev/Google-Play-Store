@@ -10,7 +10,7 @@
     <div class="col-md-6">
         <img src="{{ app.logo.url }}" class="img-fluid mb-3" alt="{{ app.title }}">
         <h2>{{ app.title }}</h2>
-        <p><strong>Category:</strong> {{ app.category.name }}</p>
+        <p><strong>Category:</strong> <a href="{% url 'category_apps' app.category.id %}">{{ app.category.name }}</a></p>
         <p><strong>Version:</strong> {{ app.version }}</p>
         <p><strong>Size:</strong> {{ app.size }} MB</p>
         <p><strong>Price:</strong> {% if app.is_free %}Free{% else %}$ {{ app.price }}{% endif %}</p>
